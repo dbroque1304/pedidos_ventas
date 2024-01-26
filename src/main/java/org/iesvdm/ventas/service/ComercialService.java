@@ -1,0 +1,50 @@
+package org.iesvdm.ventas.service;
+
+import org.iesvdm.ventas.dao.ClienteDAO;
+import org.iesvdm.ventas.dao.ComercialDAO;
+import org.iesvdm.ventas.domain.Cliente;
+import org.iesvdm.ventas.domain.Comercial;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ComercialService {
+
+    @Autowired
+    private ComercialDAO comercialDAO;
+    public List<Comercial> listAll() {
+
+        return comercialDAO.getAll();
+
+    }
+
+    public Comercial one(Integer id) {
+        Optional<Comercial> optCom = comercialDAO.find(id);
+        if (optCom.isPresent())
+            return optCom.get();
+        else
+            return null;
+    }
+
+    public void newComercial(Comercial comercial) {
+
+        comercialDAO.create(comercial);
+
+    }
+
+    public void replaceComercial(Comercial comercial) {
+
+        comercialDAO.update(comercial);
+
+    }
+
+    public void deleteComercial(int id) {
+
+        comercialDAO.delete(id);
+
+    }
+
+}

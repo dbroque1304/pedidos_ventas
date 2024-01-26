@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/general.html :: bootstrap">
+    <meta charset="UTF-8">
+    <title th:value="#{c_detalle}"></title>
+    <style>
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<div style="position: absolute; left: 50%; top : 2.5%;">
+
+    <form action="/clientes" method="get">
+        <input class="btn btn-primary" type="submit" th:value="#{volver}">
+    </form>
+
+</div>
+
+<div id="contenedora" class="container-fluid" style="float:none; margin: 0 auto;width: 900px;" >
+
+    <form th:action="@{/clientes/id/}" th:object="${cliente}" th:method="post">
+        <div class="clearfix">
+            <div style="float: left; width: 50%">
+                <h1 th:text="#{c_detalle}" ></h1>
+            </div>
+
+        </div>
+        <div class="clearfix">
+            <hr/>
+        </div>
+
+        <div style="margin-top: 6px;" class="clearfix">
+            <div th:text="#{nombre}"  style="float: left;width: 50%;font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{nombre}" />
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:text="#{apellidos}" style="float: left;width: 50%;font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="(*{apellido2} != null) ?*{apellido1} + ' ' +  *{apellido2}:*{apellido1}" />
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:text="#{ciudad}" style="float: left;font-weight: bold;width: 50%">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{ciudad}" />
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:text="#{categoria}" style="float: left;width: 50%; font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{categoria}" />
+            </div>
+            <div class="clearfix">
+                <hr/>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

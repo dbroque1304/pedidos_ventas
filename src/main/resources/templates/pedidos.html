@@ -1,0 +1,75 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:include="fragments/general.html :: bootstrap">
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <style>
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+<div id="contenedora" class="container-fluid" style="float:none; margin: 0 auto;width: 95%;" >
+    <div class="clearfix">
+        <div style="float: left; width: 50%">
+            <h1 th:text="#{pedidos}"></h1>
+        </div>
+        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+
+            <div style="position: absolute; left: 39%; top : 39%;">
+
+                <form action="/pedidos/crear" method="get">
+                    <input class="btn btn-primary" type="submit" th:value="#{crear}">
+                </form>
+
+            </div>
+            <div style="position: absolute; left: 50%; top : 39%;">
+
+                <form action="/" method="get">
+                    <input class="btn btn-primary" type="submit" th:value="#{volver}">
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="clearfix">
+        <hr/>
+    </div>
+    <div class="clearfix">
+        <div style="float: left;width: 14%">Id</div>
+        <div th:text="#{total}" style="float: left;width: 14%"></div>
+        <div th:text="#{fecha}" style="float: left;width: 14%"></div>
+        <div th:text="#{id_cliente}" style="float: left;width: 14%"></div>
+        <div th:text="#{id_comercial}" style="float: left;width: 14%"></div>
+    </div>
+    <div class="clearfix">
+        <hr/>
+    </div>
+
+    <div  th:class="row" th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
+        <div style="float: left;width: 14%" th:text="${pedido.id}">0</div>
+        <div style="float: left;width: 14%" th:text="${pedido.total}">total</div>
+        <div style="float: left;width: 14%" th:text="${pedido.fecha}">fecha</div>
+        <div style="float: left;width: 14%" th:text="${pedido.cliente.id ?: '&nbsp;'}">id_cliente</div>
+        <div style="float: left;width: 14%" th:text="${pedido.comercial.id}">id_comercial</div>
+        <div th:class="col-2" style="float: none;width: auto;overflow: hidden;">
+            <form th:action="@{/pedidos/__${pedido.id}__}" style="display: inline;">
+                <input class="btn btn-primary" type="submit" th:value="#{ver_detalle}" />
+            </form>
+            <form th:action="@{/pedidos/editar/}+${pedido.id} " style="display: inline;">
+                <input class="btn btn-primary" type="submit" th:value="#{editar}" />
+            </form>
+            <form th:action="@{/pedidos/borrar/}+${pedido.id} " method="post" style="display: inline;">
+                <input class="btn btn-danger" type ="submit" th:value="#{eliminar}" />
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

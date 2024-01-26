@@ -1,0 +1,100 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/general.html :: bootstrap">
+    <meta charset="UTF-8">
+    <title th:text="#{co_detalle}"></title>
+    <style>
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<div style="position: absolute; left: 50%; top : 2.5%;">
+
+    <form action="/comerciales" method="get">
+        <input class="btn btn-primary" type="submit" th:value="#{volver}">
+    </form>
+
+</div>
+
+<div id="contenedora" class="container-fluid" style="float:none; margin: 0 auto;width: 900px;" >
+
+    <form th:action="@{/comerciales/id/}" th:object="${comercial}" th:method="post">
+        <div class="clearfix">
+            <div style="float: left; width: 50%">
+                <h1 th:text="#{co_detalle}"></h1>
+            </div>
+
+        </div>
+        <div class="clearfix">
+            <hr/>
+        </div>
+
+        <div style="margin-top: 6px;" class="clearfix">
+            <div th:text="#{nombre}" style="float: left;width: 50%;font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{nombre}" />
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:text="#{apellidos}" style="float: left;width: 50%;font-weight: bold">
+                Apellido/s
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="(*{apellido2} != null) ?*{apellido1} + ' ' +  *{apellido2}:*{apellido1}" />
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:text="#{comision}" style="float: left;font-weight: bold;width: 50%">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{comision}" />
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <hr/>
+        </div>
+        <div class="clearfix">
+            <div style="float: left">
+                <h2 th:text="#{co_pedidos} + ' ' + *{nombre}"></h2>
+            </div>
+        </div>
+
+    </form>
+    <div class="clearfix">
+        <hr/>
+    </div>
+    <div th:class="row" class="clearfix">
+        <div th:class="col-1" th:text="#{id}" style="float: left;"></div>
+        <div th:class="col-2" th:text="#{total}" style="float: left;"></div>
+        <div th:class="col-2" th:text="#{fecha}" style="float: left;"></div>
+        <div th:class="col" th:text="#{cliente}" style="float: left;"></div>
+    </div>
+    <div class="clearfix">
+        <hr/>
+    </div>
+    <div  th:class="row" th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
+        <div th:class="col-1" style="float: left;" th:text="${pedido.id}">0</div>
+        <div th:class="col-2" style="float: left;" th:text="${pedido.total}">total</div>
+        <div th:class="col-2" style="float: left;" th:text="${pedido.fecha}">fecha</div>
+        <div th:class="col" th:object="${pedido.cliente}" style="float: left;width: 16%" th:text="*{nombre} + ' ' + *{apellido1} + ' ' + ((*{apellido2} != null) ? ' ' + *{apellido2} : '')"></div>
+        <form th:class="col" th:action="@{/clientes/__${pedido.cliente.id}__}" style="display: inline;">
+            <input class="btn btn-primary" type="submit" th:value="#{ver_detalle}" />
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

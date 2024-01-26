@@ -1,0 +1,78 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/general.html :: bootstrap">
+    <meta charset="UTF-8">
+    <title th:text="#{p_detalles}"></title>
+    <style>
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<div style="position: absolute; left: 50%; top : 2.5%;">
+
+    <form action="/pedidos" method="get">
+        <input class="btn btn-primary" type="submit" th:value="#{volver}">
+    </form>
+
+</div>
+
+<div id="contenedora" class="container-fluid" style="float:none; margin: 0 auto;width: 900px;" >
+
+    <form th:action="@{/pedidos/id/}" th:object="${pedido}" th:method="post">
+        <div class="clearfix">
+            <div style="float: left; width: 50%">
+                <h1 th:text="#{p_detalles}"></h1>
+            </div>
+
+        </div>
+        <div class="clearfix">
+            <hr/>
+        </div>
+
+        <div th:class="row" style="margin-top: 6px;" class="clearfix">
+            <div th:class="col" th:text="#{total}" style="float: left;width: 50%;font-weight: bold">
+            </div>
+            <div th:class="col" style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{total}" />
+            </div>
+        </div>
+        <div th:class="row" style="margin-top: 6px;" class="clearfix">
+            <div class="clearfix">
+                <hr/>
+            </div>
+            <div th:class="col" th:text="#{fecha}" style="float: left;width: 50%;font-weight: bold">
+            </div>
+            <div th:class="col" style="float: none;width: auto;overflow: hidden;">
+                <div th:text="*{fecha}" />
+            </div>
+        </div>
+    </form>
+    <div class="clearfix">
+        <hr/>
+    </div>
+    <div th:class="row" style="margin-top: 6px; align-items: center" class="clearfix">
+        <div th:class="col-2" th:text="#{cliente}" style="float: left;font-weight: bold;width: 50%" />
+        <div th:class="col" th:object="${cliente}" th:text="'Id: ' + *{id} + ' - ' + *{nombre} + ' ' + *{apellido1} + ' ' + ((*{apellido2} != null) ? *{apellido2} : '')"></div>
+        <form th:class="col" th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
+            <input class="btn btn-primary" type="submit" th:value="#{ver_detalle}" />
+        </form>
+    </div>
+    <div class="clearfix">
+        <hr/>
+    </div>
+    <div th:class="row" style="margin-top: 6px; align-items: center" class="clearfix">
+        <div th:class="col-2" th:text="#{comercial}" style="float: left;font-weight: bold;width: 50%" />
+        <div th:class="col" th:object="${comercial}" th:text="'Id: ' + *{id} + ' - ' + *{nombre} + ' ' + *{apellido1} + ' ' + ((*{apellido2} != null) ? *{apellido2} : '')"></div>
+        <form th:class="col" th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">
+            <input class="btn btn-primary" type="submit" th:value="#{ver_detalle}" />
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

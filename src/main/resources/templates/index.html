@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="fragments/general.html :: bootstrap">
+    <meta charset="UTF-8">
+    <title>VentasApp</title>
+</head>
+<body>
+    <form th:action="@{/clientes}" style="display: inline;">
+        <input class="btn btn-primary" type="submit" th:value="#{ver_clientes}" />
+    </form>
+    <form th:action="@{/comerciales}" style="display: inline;">
+        <input class="btn btn-primary" type="submit" th:value="#{ver_comerciales}" />
+    </form>
+    <form th:action="@{/pedidos}" style="display: inline;">
+        <input class="btn btn-primary" type="submit" th:value="#{ver_pedidos}" />
+    </form>
+</body>
+</html>
