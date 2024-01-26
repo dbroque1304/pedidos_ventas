@@ -19,6 +19,6 @@ public interface PedidoDAO {
 
     public void delete(int id);
 
-    public int total(int id);
-    public double media(int id);
+    public double total(int id);
+    public Double media(int id);
 }

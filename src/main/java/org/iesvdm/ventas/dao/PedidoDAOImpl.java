@@ -85,8 +85,8 @@ public class PedidoDAOImpl implements PedidoDAO{
         log.info("Delete de Pedido con {} registros eliminados.", rows);
     }
 
-    public double media(int id){
-        double media = 0;
+    public Double media(int id){
+        Double media = 0d;
         int i = 0;
         List <Pedido> pedidoList = this.getAll().stream()
                 .filter(pedido -> pedido.getComercial().getId() == id)
@@ -95,10 +95,13 @@ public class PedidoDAOImpl implements PedidoDAO{
             media += pedido.getTotal();
             i++;
         }
+        if (media.isNaN()){
+            return 0d;
+        }
         return media/i;
     }
-    public int total(int id){
-        int total = 0;
+    public double total(int id){
+        double total = 0;
         List <Pedido> pedidoList = this.getAll().stream()
                 .filter(pedido -> pedido.getComercial().getId() == id)
                 .toList();

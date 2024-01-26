@@ -60,7 +60,7 @@ public class PedidoService {
 
     }
 
-    public int calcularTotal(int id){
+    public double calcularTotal(int id){
         return this.pedidoDAO.total(id);
     }
 

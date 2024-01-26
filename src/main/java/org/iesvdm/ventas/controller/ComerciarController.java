@@ -43,7 +43,7 @@ public class ComerciarController {
         List<Pedido> listaPedidos = pedidoService.getAllPedidosByIdComercial(id);
         model.addAttribute("listaPedidos", listaPedidos);
         double media = this.pedidoService.calcularMedia(id);
-        int total = this.pedidoService.calcularTotal(id);
+        double total = this.pedidoService.calcularTotal(id);
         model.addAttribute("media", media);
         model.addAttribute("total", total);
         return "detalle-comercial";
