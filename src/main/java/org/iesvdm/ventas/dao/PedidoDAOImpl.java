@@ -84,4 +84,27 @@ public class PedidoDAOImpl implements PedidoDAO{
         if (rows == 0) System.out.println("Update de pedido con 0 registros actualizados.");
         log.info("Delete de Pedido con {} registros eliminados.", rows);
     }
+
+    public double media(int id){
+        double media = 0;
+        int i = 0;
+        List <Pedido> pedidoList = this.getAll().stream()
+                .filter(pedido -> pedido.getComercial().getId() == id)
+                .toList();
+        for(Pedido pedido : pedidoList) {
+            media += pedido.getTotal();
+            i++;
+        }
+        return media/i;
+    }
+    public int total(int id){
+        int total = 0;
+        List <Pedido> pedidoList = this.getAll().stream()
+                .filter(pedido -> pedido.getComercial().getId() == id)
+                .toList();
+        for(Pedido pedido :pedidoList) {
+            total += pedido.getTotal();
+        }
+        return total;
+    }
 }

@@ -60,4 +60,12 @@ public class PedidoService {
 
     }
 
+    public int calcularTotal(int id){
+        return this.pedidoDAO.total(id);
+    }
+
+    public double calcularMedia(int id){
+        return this.pedidoDAO.media(id);
+    }
+
 }

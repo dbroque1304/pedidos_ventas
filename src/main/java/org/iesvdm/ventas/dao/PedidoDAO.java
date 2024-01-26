@@ -18,4 +18,7 @@ public interface PedidoDAO {
     public void update(Pedido pedido);
 
     public void delete(int id);
+
+    public int total(int id);
+    public double media(int id);
 }

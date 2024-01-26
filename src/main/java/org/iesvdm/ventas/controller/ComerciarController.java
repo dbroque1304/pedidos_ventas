@@ -23,8 +23,7 @@ public class ComerciarController {
     private ComercialService comercialService;
     @Autowired
     private PedidoService pedidoService;
-    @Autowired
-    private ClienteService clienteService;
+
 
     @GetMapping("/comerciales")
     public String listar(Model model) {
@@ -43,7 +42,10 @@ public class ComerciarController {
         model.addAttribute("comercial", comercial);
         List<Pedido> listaPedidos = pedidoService.getAllPedidosByIdComercial(id);
         model.addAttribute("listaPedidos", listaPedidos);
-
+        double media = this.pedidoService.calcularMedia(id);
+        int total = this.pedidoService.calcularTotal(id);
+        model.addAttribute("media", media);
+        model.addAttribute("total", total);
         return "detalle-comercial";
 
     }
