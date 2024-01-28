@@ -13,28 +13,24 @@
 </head>
 <body>
 
-<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
-    <div class="clearfix">
-        <div style="float: left; width: 50%">
+<div th:class="container-fluid" >
+    <div class="row">
+        <div th:class="col">
             <h1 th:text="#{comerciales}"></h1>
         </div>
-        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-
-            <div style="position: absolute; left: 39%; top : 39%;">
-
-                <form action="/comerciales/crear" method="get">
-                    <input class="btn btn-primary" type="submit" th:value="#{crear}">
-                </form>
-
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/comerciales/crear" method="get">
+                        <input class="btn btn-primary btn-block" type="submit" th:value="#{crear}">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form action="/" method="get">
+                        <input class="btn btn-primary btn-block" type="submit" th:value="#{volver}">
+                    </form>
+                </div>
             </div>
-            <div style="position: absolute; left: 50%; top : 39%;">
-
-                <form action="/" method="get">
-                    <input class="btn btn-primary" type="submit" th:value="#{volver}">
-                </form>
-
-            </div>
-
         </div>
     </div>
     <div class="clearfix">

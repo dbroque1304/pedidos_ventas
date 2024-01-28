@@ -3,79 +3,67 @@
 <head th:insert="fragments/general.html :: bootstrap">
     <meta charset="UTF-8">
     <title th:text="#{crear} + ' ' + #{comercial}"></title>
-    <style>
-        .clearfix::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-
-    </style>
 </head>
 <body>
 
-<div id="contenedora" class="container-fluid" style="float:none; margin: 0 auto;width: 900px;" >
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div id="contenedora" class="container">
 
-    <form th:action="@{/comerciales/crear}" th:object="${comercial}" th:method="post">
-        <div class="clearfix">
-            <div style="float: left; width: 50%">
-                <h1 th:text="#{crear} + ' ' + #{comercial}"></h1>
-            </div>
-            <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-
-                <div style="position: absolute; left: 39%; top : 39%;">
-                    <input class="btn btn-primary" type="submit" th:value="#{crear}"/>
+        <form th:action="@{/comerciales/crear}" th:object="${comercial}" th:method="post">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h1 th:text="#{crear} + ' ' + #{comercial}"></h1>
                 </div>
+            </div>
 
+            <div style="margin-top: 6px;" class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label th:text="#{nombre}" class="font-weight-bold"></label>
+                        <input th:field="*{nombre}" class="form-control" />
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div style="margin-top: 6px;" class="clearfix">
-            <div class="clearfix">
-                <hr/>
+            <div style="margin-top: 6px;" class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label th:text="#{apellido1}" class="font-weight-bold"></label>
+                        <input th:field="*{apellido1}" class="form-control" />
+                    </div>
+                </div>
             </div>
-            <div th:text="#{nombre}" style="float: left;width: 50%;font-weight: bold"></div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{nombre}" />
-            </div>
-            <div class="clearfix">
-            </div>
-            <div class="clearfix">
-                <hr/>
-            </div>
-        </div>
-        <div style="margin-top: 6px;" class="clearfix">
-            <div th:text="#{apellido1}" style="float: left;width: 50%;font-weight: bold">
-            </div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido1}" />
-            </div>
-            <div class="clearfix">
-                <hr/>
-            </div>
-        </div>
-        <div style="margin-top: 6px;" class="clearfix">
-            <div th:text="#{apellido2}" style="float: left;width: 50%;font-weight: bold">
-            </div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido2}" />
-            </div>
-            <div class="clearfix">
-                <hr/>
-            </div>
-        </div>
-        <div style="margin-top: 6px;" class="clearfix">
-            <div th:text="#{comision}" style="float: left;font-weight: bold;width: 50%">
-            </div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{comision}" />
-            </div>
-            <div class="clearfix">
-                <hr/>
-            </div>
-        </div>
 
-    </form>
+            <div style="margin-top: 6px;" class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label th:text="#{apellido2}" class="font-weight-bold"></label>
+                        <input th:field="*{apellido2}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 6px;" class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label th:text="#{comision}" class="font-weight-bold"></label>
+                        <input th:field="*{comision}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 6px;" class="row justify-content-center">
+                <div class="col-md-6">
+                    <button class="btn btn-primary d-block w-100" type="submit" th:text="#{crear}"></button>
+                </div>
+            </div>
+        </form>
+        <div style="margin-top: 6px;" class="row justify-content-center">
+            <form action="/comerciales" class="col-md-6">
+                <button class="btn btn-primary d-block w-100" type="submit" th:text="#{volver}"></button>
+            </form>
+        </div>
+</div>
 </div>
 </body>
 </html>

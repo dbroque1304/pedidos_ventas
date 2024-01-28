@@ -99,7 +99,7 @@
     <div th:if="((${listaPedidos.size()} > 0) ?: '')">
         <div class="clearfix">
             <div style="float: left">
-                <h2 th:text="#{co_pedidos} + ' ' + *{nombre}"></h2>
+                <h2 th:text="#{co_pedidos} + ' ' + ${comercial.nombre}"></h2>
             </div>
         </div>
         <div class="clearfix">
