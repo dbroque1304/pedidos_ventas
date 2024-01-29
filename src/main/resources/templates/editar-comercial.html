@@ -53,6 +53,9 @@
                 <div class="form-group">
                     <label th:text="#{comision}" class="font-weight-bold"></label>
                     <input th:field="*{comision}" class="form-control" />
+                    <ul th:if="${#fields.hasErrors('comision')}" class="error">
+                        <li th:each="err : ${#fields.errors('comision')}" th:text="${err}" class="error"></li>
+                    </ul>
                 </div>
             </div>
         </div>

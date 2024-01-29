@@ -12,6 +12,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.security.Key;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +44,8 @@ public class ComercialDAOImpl implements ComercialDAO{
     public List<Comercial> getAll() {
         List<Comercial> comercialList = jdbcTemplate.query(
                 "SELECT * FROM comercial",
-                (rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), rs.getFloat("comisión"))
-        );
+                (rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), BigDecimal.valueOf(rs.getFloat("comisión")).setScale(3, RoundingMode.HALF_UP)
+        ));
         log.info("Devueltos {} registros.", comercialList.size());
         return comercialList;
     }
@@ -51,7 +54,7 @@ public class ComercialDAOImpl implements ComercialDAO{
     public Optional<Comercial> find(int id) {
         Comercial com = jdbcTemplate.queryForObject(
                 "SELECT * FROM comercial WHERE id = ?",
-                (rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), rs.getFloat("comisión")
+                (rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), BigDecimal.valueOf(rs.getFloat("comisión")).setScale(3, RoundingMode.HALF_UP)
                 ), id);
         if (com != null) {
             return Optional.of(com);

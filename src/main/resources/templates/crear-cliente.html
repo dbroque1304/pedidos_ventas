@@ -2,15 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/general.html :: bootstrap">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <title th:text="#{crear} + ' ' + #{cliente}"></title>
-    <style>
-        .clearfix::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -37,6 +30,9 @@
             <div th:text="#{nombre}" style="float: left;width: 50%;font-weight: bold"></div>
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{nombre}" />
+                <ul th:if="${#fields.hasErrors('nombre')}" class="error">
+                    <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
             <div class="clearfix">
             </div>
@@ -49,6 +45,9 @@
             </div>
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{apellido1}" />
+                <ul th:if="${#fields.hasErrors('apellido1')}" class="error">
+                    <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
             <div class="clearfix">
                 <hr/>
@@ -69,6 +68,9 @@
             </div>
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{ciudad}" />
+                <ul th:if="${#fields.hasErrors('ciudad')}" th:class="error">
+                    <li th:each="err : ${#fields.errors('ciudad')}" th:text="${err}" th:class="error"></li>
+                </ul>
             </div>
             <div class="clearfix">
                 <hr/>
@@ -79,6 +81,22 @@
             </div>
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{categoria}" />
+                <ul th:if="${#fields.hasErrors('categoria')}" class="error">
+                    <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}" class="error"></li>
+                </ul>
+            </div>
+            <div class="clearfix">
+                <hr/>
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div th:text="#{email}" style="float: left;width: 50%; font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <input th:field="*{email}" />
+                <ul th:if="${#fields.hasErrors('email')}" class="error">
+                    <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error"></li>
+                </ul>
             </div>
             <div class="clearfix">
                 <hr/>

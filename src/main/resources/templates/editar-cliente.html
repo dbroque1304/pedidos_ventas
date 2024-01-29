@@ -39,6 +39,9 @@
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{nombre}" />
             </div>
+            <ul th:if="${#fields.hasErrors('nombre')}" class="error">
+                <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error"></li>
+            </ul>
             <div class="clearfix">
                 <hr/>
             </div>
@@ -49,6 +52,9 @@
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{apellido1}" />
             </div>
+            <ul th:if="${#fields.hasErrors('apellido1')}" class="error">
+                <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error"></li>
+            </ul>
         </div>
         <div style="margin-top: 6px;" class="clearfix">
             <div class="clearfix">
@@ -79,6 +85,22 @@
             <div style="float: none;width: auto;overflow: hidden;">
                 <input th:field="*{categoria}" />
             </div>
+            <ul th:if="${#fields.hasErrors('categoria')}" class="error">
+                <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}" class="error"></li>
+            </ul>
+            <div class="clearfix">
+                <hr/>
+            </div>
+        </div>
+        <div style="margin-top: 6px;" class="clearfix">
+            <div th:text="#{email}" style="float: left;width: 50%; font-weight: bold">
+            </div>
+            <div style="float: none;width: auto;overflow: hidden;">
+                <input th:field="*{email}" />
+            </div>
+            <ul th:if="${#fields.hasErrors('email')}" class="error">
+                <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error"></li>
+            </ul>
             <div class="clearfix">
                 <hr/>
             </div>

@@ -3,7 +3,7 @@
 <head th:insert="fragments/general.html :: bootstrap">
     <meta charset="UTF-8">
     <title th:text="#{clientes}">Clientes</title>
-
+    <link rel="stylesheet" href="../static/css/styles.css">
     <style>
         .clearfix::after {
             content: "";
@@ -49,19 +49,21 @@
         <div th:text="#{apellido2}" style="float: left;width: 14%"></div>
         <div th:text="#{ciudad}" style="float: left;width: 14%"></div>
         <div th:text="#{categoria}" style="float: left;width: 14%"></div>
+        <div th:text="#{email}" style="float: left;width: 14%"></div>
     </div>
     <div class="clearfix">
         <hr/>
     </div>
 
-    <div  th:class="row" th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
-        <div style="float: left;width: 14%" th:text="${cliente.id}">0</div>
-        <div style="float: left;width: 14%" th:text="${cliente.nombre}">nombre</div>
-        <div style="float: left;width: 14%" th:text="${cliente.apellido1}">apellido1</div>
-        <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</div>
+    <div  th:class="row" th:each="cliente : ${listaClientes}" style="margin-top: 6px; align-items: center" class="clearfix">
+        <div style="float: left;width: 14%" th:text="${cliente.id}"></div>
+        <div style="float: left;width: 14%" th:text="${cliente.nombre}"></div>
+        <div style="float: left;width: 14%" th:text="${cliente.apellido1}"></div>
+        <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}"></div>
         <div style="float: left;width: 14%" th:text="${cliente.ciudad}">ciudad</div>
-        <div th:class="col" style="float: left;width: 14%" th:text="${cliente.categoria}">categoría</div>
-        <div th:class="col-2" style="float: none;width: auto;overflow: hidden;">
+        <div th:class="col" style="float: left;width: 14%" th:text="${cliente.categoria}"></div>
+        <div th:class="col" style="float: left;width: 14%" th:text="${cliente.email}"></div>
+        <div th:class="col" style="float: none;width: auto;overflow: hidden;">
             <form th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
                 <input class="btn btn-primary" type="submit" th:value="#{ver_detalle}" />
             </form>

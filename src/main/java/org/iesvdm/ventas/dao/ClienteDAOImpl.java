@@ -40,7 +40,7 @@ public class ClienteDAOImpl implements ClienteDAO{
     public List<Cliente> getAll() {
          List<Cliente> clienteList = jdbcTemplate.query(
                 "SELECT * FROM cliente",
-                (rs, rowNum) -> new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), rs.getString("ciudad"), rs.getInt("categoría"))
+                (rs, rowNum) -> new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"), rs.getString("ciudad"), rs.getInt("categoría"), "")
         );
         log.info("Devueltos {} registros.", clienteList.size());
         return clienteList;
@@ -56,7 +56,8 @@ public class ClienteDAOImpl implements ClienteDAO{
                                             rs.getString("apellido1"),
                                             rs.getString("apellido2"),
                                             rs.getString("ciudad"),
-                                            rs.getInt("categoría")),id
+                                            rs.getInt("categoría"),
+                                            ""),id
                 );
         if (cli != null){
             return Optional.of(cli);

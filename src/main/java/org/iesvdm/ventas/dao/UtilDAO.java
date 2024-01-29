@@ -5,6 +5,7 @@ import org.iesvdm.ventas.domain.Cliente;
 import org.iesvdm.ventas.domain.Comercial;
 import org.iesvdm.ventas.domain.Pedido;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,13 +20,14 @@ public class UtilDAO {
                         rs.getString("C.apellido1"),
                         rs.getString("C.apellido2"),
                         rs.getString("C.ciudad"),
-                        rs.getInt("C.categoría")
+                        rs.getInt("C.categoría"),
+                        ""
                 ),
                 new Comercial(rs.getInt("CO.id"),
                         rs.getString("CO.nombre"),
                         rs.getString("CO.apellido1"),
                         rs.getString("CO.apellido2"),
-                        rs.getFloat("CO.comisión")
+                        BigDecimal.valueOf(rs.getFloat("CO.comisión"))
                 )
         );
     }
@@ -36,6 +38,7 @@ public class UtilDAO {
                 , rs.getString("apellido2")
                 , rs.getString("ciudad")
                 , rs.getInt("categoría")
+                , ""
         );
     }
 
@@ -44,6 +47,6 @@ public class UtilDAO {
                 , rs.getString("nombre")
                 , rs.getString("apellido1")
                 , rs.getString("apellido2")
-                , rs.getFloat("comisión"));
+                , BigDecimal.valueOf(rs.getFloat("comisión")));
     }
 }
